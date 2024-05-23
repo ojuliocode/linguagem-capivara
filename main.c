@@ -31,7 +31,7 @@ typedef struct {
 } TokenLiteral;
 
 void generateNumber(char current, FILE *file){
-    while(current != EOF){
+    while( isdigit(current) && current != EOF){
         if(!isdigit(current)){
             return;
         }
