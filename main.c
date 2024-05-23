@@ -30,6 +30,16 @@ typedef struct {
     int value;
 } TokenLiteral;
 
+void generateNumber(char current, FILE *file){
+    while(current != EOF){
+        if(!isdigit(current)){
+            return;
+        }
+        printf("%c", current);
+        current = fgetc(file);
+    }
+}
+
 void lexer(FILE *file){
     char current = fgetc(file);
 
@@ -42,7 +52,7 @@ void lexer(FILE *file){
             printf("Found close paren\n");
         } else if (isdigit(current)){
             printf("Found digit: ");
-            printf("%d\n", current - '0');
+            generateNumber(current, file);
         } else if (isalpha(current)){
             printf("Found char: %c\n", current);
         } else if(current == '\n'){
